@@ -10,3 +10,30 @@ dependencies = [
     "numpy>=2.2.2",
     "otter-grader>=6.1.0",
 ]
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".ipynb_checkpoints",
+    ".ruff_cache",
+    ".venv",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",   # flake8-bugbear
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "W",   # pycodestyle
+]
+ignore = [
+    "E702", # Multiple statements on one line
+    "E703", # Statement ends with a semicolon
+    "E501", # Line too long
+    "I001" # isort: imports are incorrectly sorted
+]
+
+[tool.ruff.format]
+quote-style = "double"
