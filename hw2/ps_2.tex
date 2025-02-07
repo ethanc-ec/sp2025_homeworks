@@ -1,5 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage{amsmath, amssymb}
+\usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
 
 \begin{document}
 
@@ -18,6 +19,13 @@
 \section*{Problem 3.2}
 For each of the four linear regions in Figure 3.3j, indicate which hidden units are inactive and which are active (i.e., which do and do not clip their inputs).
 
+\begin{enumerate}
+    \item Region 1: $x < \approx 0.5$ \textemdash{} $h_3$ is active, others are inactive
+    \item Region 2: $0.5 < x < 1$ \textemdash{} $h_1$ and $h_3$ are active, $h_2$ is inactive
+    \item Region 3: $1 < x < 1.5$ \textemdash{} all are active
+    \item Region 4: $x > 1.5$ \textemdash{} $h_1$ and $h_2$ are active, $h_3$ is inactive
+\end{enumerate}
+
 
 \vspace{2em}
 
@@ -29,11 +37,51 @@ Prove that the following property holds for $\alpha \in \mathbb{R}^+$:
 \]
 This is known as the non-negative homogeneity property of the ReLU function.
 
+\vspace{1em}
+
+\begin{enumerate}
+    \item Recall: $\text{ReLU}[x] = \max(0,x)$
+
+    \item Left side: $\text{ReLU}[\alpha \cdot z]$
+        \[ \text{ReLU}[\alpha \cdot z] = \max(0, \alpha \cdot z) \]
+
+    \item Right side: $\alpha \cdot \text{ReLU}[z]$
+        \[ \alpha \cdot \text{ReLU}[z] = \alpha \cdot \max(0, z) \]
+
+    \item Since $\alpha > 0$, we can use the property that for any positive scalar $\alpha$:
+        \[ \max(0, \alpha \cdot z) = \alpha \cdot \max(0, z) \]
+\end{enumerate}
+
+Therefore:
+\[ \text{ReLU}[\alpha \cdot z] = \max(0, \alpha \cdot z) = \alpha \cdot \max(0, z) = \alpha \cdot \text{ReLU}[z] \]
+
 \vspace{2em}
 
 \section*{Problem 4.6}
+Consider a network with $D_i = 1$ input, $D_o = 1$ output, $K = 10$ layers, and $D = 10$ hidden units in each. Would the number of weights increase more \textemdash{} if we increased the depth by one or the width by one? Provide your reasoning.
 
-Consider a network with $D_i = 1$ input, $D_o = 1$ output, $K = 10$ layers, and $D = 10$ hidden units in each. Would the number of weights increase more -- if we increased the depth by one or the width by one? Provide your reasoning.
+\vspace{1em}
 
+\begin{enumerate}
+    \item Current network:
+    \begin{enumerate}
+        \item First layer: $1 \times 10$ weights (input to first hidden)
+        \item Middle layers: $9$ layers of $10 \times 10$ weights
+        \item Final layer: $10 \times 1$ weights (last hidden to output)
+    \end{enumerate}
+    \item Adding depth (K = 11):
+    \begin{enumerate}
+        \item Adds one new $10 \times 10$ matrix = 100 new weights
+    \end{enumerate}
+    \item Adding width (D = 11):
+    \begin{enumerate}
+        \item First layer changes from $1 \times 10$ to $1 \times 11$ = 1 new weight
+        \item Middle layers change from $10 \times 10$ to $11 \times 11$ = 21 new weights per layer × 9 layers
+        \item Final layer changes from $10 \times 1$ to $11 \times 1$ = 1 new weight
+        \item Total new weights: $1 + (21 \times 9) + 1 = 191$ new weights
+    \end{enumerate}
+\end{enumerate}
+
+Therefore, increasing the width by one adds more weights (191) than increasing the depth by one (100).
 
 \end{document}
