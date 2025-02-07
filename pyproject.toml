@@ -6,9 +6,12 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "ipykernel>=6.29.5",
+    "ipywidgets>=8.1.5",
+    "jupyter>=1.1.1",
     "matplotlib>=3.10.0",
     "numpy>=2.2.2",
     "otter-grader>=6.1.0",
+    "scipy>=1.15.1",
 ]
 
 [tool.ruff]
